@@ -93,3 +93,18 @@ body {
     margin-top: 2em;
     resize: none;
 }
+
+.notes__delete-btn {
+    background: #e74c3c;
+    border: none;
+    border-radius: 4px;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 0.8em;
+    margin-top: 5px;
+    padding: 5px 10px;
+}
+
+.notes__delete-btn:hover {
+    background: #c0392b;
+}

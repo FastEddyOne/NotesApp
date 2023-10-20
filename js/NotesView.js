@@ -38,7 +38,7 @@ export default class NotesView {
 
     _createListItemHTML(id, title, body, updated) {
         const MAX_BODY_LENGTH = 60;
-
+    
         return `
             <div class="notes__list-item" data-note-id="${id}">
                 <div class="notes__small-title">${title}</div>
@@ -49,37 +49,38 @@ export default class NotesView {
                 <div class="notes__small-updated">
                     ${updated.toLocaleString(undefined, { dateStyle: "full", timeStyle: "short" })}
                 </div>
+                <button class="notes__delete-btn" data-note-id="${id}">Delete</button>
             </div>
         `;
     }
+    
 
     updateNoteList(notes) {
         const notesListContainer = this.root.querySelector(".notes__list");
-
+    
         // Empty list
         notesListContainer.innerHTML = "";
-
+    
         for (const note of notes) {
             const html = this._createListItemHTML(note.id, note.title, note.body, new Date(note.updated));
-
             notesListContainer.insertAdjacentHTML("beforeend", html);
         }
-
+    
         // Add select/delete events for each list item
         notesListContainer.querySelectorAll(".notes__list-item").forEach(noteListItem => {
-            noteListItem.addEventListener("click", () => {
-                this.onNoteSelect(noteListItem.dataset.noteId);
-            });
-
-            noteListItem.addEventListener("dblclick", () => {
-                const doDelete = confirm("Are you sure you want to delete this note?");
-
-                if (doDelete) {
-                    this.onNoteDelete(noteListItem.dataset.noteId);
+            noteListItem.addEventListener("click", (event) => {
+                if(event.target.classList.contains("notes__delete-btn")) {
+                    const doDelete = confirm("Are you sure you want to delete this note?");
+                    if (doDelete) {
+                        this.onNoteDelete(event.target.dataset.noteId);
+                    }
+                } else {
+                    this.onNoteSelect(noteListItem.dataset.noteId);
                 }
             });
         });
     }
+    
 
     updateActiveNote(note) {
         this.root.querySelector(".notes__title").value = note.title;
