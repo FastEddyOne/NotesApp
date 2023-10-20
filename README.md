@@ -2,6 +2,7 @@
 
 A simple web-based notes application to quickly jot down and manage your notes.
 
+Preview: https://fasteddyone.github.io/NotesApp/
 
 ## Features
 
