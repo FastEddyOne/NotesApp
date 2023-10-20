@@ -108,3 +108,37 @@ body {
 .notes__delete-btn:hover {
     background: #c0392b;
 }
+
+/* Default Light Theme */
+:root {
+    --bg-color: #FFFFFF;
+    --text-color: #000000;
+    --btn-background: #009578;
+    --btn-color: #FFFFFF;
+    --border-color: #dddddd;
+    /* ... Add other variables as needed ... */
+}
+
+/* Dark Theme Overrides */
+[data-theme="dark"] {
+    --bg-color: #121212;
+    --text-color: #FFFFFF;
+    --btn-background: #2e7d32;
+    --btn-color: #FFFFFF;
+    --border-color: #424242;
+    /* ... Override other variables as needed ... */
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+.notes__add {
+    background-color: var(--btn-background);
+    color: var(--btn-color);
+}
+
+.notes__sidebar {
+    border-right-color: var(--border-color);
+}

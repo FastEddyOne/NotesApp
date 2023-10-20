@@ -8,6 +8,7 @@ export default class App {
         this.view = new NotesView(root, this._handlers());
 
         this._refreshNotes();
+        this._initDarkModeToggle();
     }
 
     _refreshNotes() {
@@ -29,6 +30,26 @@ export default class App {
     _setActiveNote(note) {
         this.activeNote = note;
         this.view.updateActiveNote(note);
+    }
+
+    _initDarkModeToggle() {
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const darkModeToggle = document.getElementById('darkModeToggle');
+
+            darkModeToggle.addEventListener('click', () => {
+                if (document.documentElement.getAttribute('data-theme') === 'dark') {
+                    document.documentElement.setAttribute('data-theme', 'light');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    localStorage.setItem('theme', 'dark');
+                }
+            });
+
+            // Load the saved theme from local storage (if available)
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        });
     }
 
     _handlers() {

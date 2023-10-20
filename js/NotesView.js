@@ -7,6 +7,7 @@ export default class NotesView {
         this.onNoteDelete = onNoteDelete;
         this.root.innerHTML = `
             <div class="notes__sidebar">
+                <button id="darkModeToggle">Toggle Dark Mode</button>
                 <button class="notes__add" type="button">Add Note</button>
                 <div class="notes__list"></div>
             </div>
